@@ -13,8 +13,7 @@
   (timezone "America/New_York")
   (locale "en_US.UTF-8")
   (kernel-arguments
-   '("pci-stub.ids=10de:13c0,10de:0fbb"
-     "modprobe.blacklist=nouveau"
+   '("modprobe.blacklist=nouveau"
      "intel_iommu=on"))
 
   ;; Assuming /dev/sdX is the target hard disk, and "root" is
@@ -25,7 +24,7 @@
 
   (initrd (lambda (file-systems . rest)
 	    (apply base-initrd file-systems
-		   #:extra-modules '("vfio-pci")
+		   #:extra-modules '("vfio-pci" "vfio_iommu_type1")
 		   rest)))
   
   (file-systems (cons (file-system
