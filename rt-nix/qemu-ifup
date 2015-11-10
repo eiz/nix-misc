@@ -1,0 +1,19 @@
+#!/bin/sh
+set -x
+
+switch=br0
+pubif=enp0s25
+
+if [ -n "$1" ]; then
+        sudo brctl addbr $switch
+        sudo brctl addif $switch $pubif
+        sudo tunctl -u `whoami` -t $1
+        sudo ip link set $1 up
+        sleep 0.5s
+        sudo brctl addif $switch $1
+        exit 0
+else
+        echo "Error: no interface specified"
+        exit 1
+fi
+

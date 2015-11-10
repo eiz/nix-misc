@@ -38,7 +38,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    wget vim qemu tmux unzip links git usbutils
+    wget vim qemu tmux unzip links2 git usbutils bridge-utils tunctl
   ];
 
   # List services that you want to enable:

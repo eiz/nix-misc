@@ -1,0 +1,17 @@
+#!/bin/sh
+set -x
+
+switch=br0
+
+if [ -n "$1" ]; then
+    sudo ip link set $1 down
+    sudo brctl delif $switch $1
+    sudo ip link set $switch down
+    sudo brctl delbr $switch
+    sudo tunctl -d $1
+    exit 0
+else
+    echo "Error: no interface specified"
+    exit 1
+fi
+
