@@ -18,6 +18,7 @@ qemu-system-x86_64 \
     -usb \
     -device usb-host,vendorid=0x046d,productid=0xc05a \
     -device usb-host,vendorid=0x1b1c,productid=0x1b11 \
+    -device usb-host,vendorid=0x1397,productid=0x00bc \
     -device nec-usb-xhci,id=xhci \
     -device usb-host,vendorid=0x0781,productid=0x5580,bus=xhci.0
 
