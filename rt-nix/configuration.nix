@@ -38,13 +38,14 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    wget vim qemu tmux unzip links2 git usbutils bridge-utils tunctl
+    wget vim qemu tmux unzip links2 git usbutils bridge-utils tunctl linuxPackages.perf
   ];
 
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  networking.firewall.allowedTCPPorts = [ 22 5900 ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;

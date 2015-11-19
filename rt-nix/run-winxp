@@ -1,0 +1,15 @@
+#!/bin/sh
+
+nice qemu-system-x86_64 \
+    -enable-kvm -cpu host,kvm=off \
+    -m 2048 \
+    -rtc localtime \
+    -hda winxp.qcow2 \
+    -spice port=5900,password=streampc \
+    -netdev user,id=net \
+    -device ne2k_pci,netdev=net \
+    -nographic \
+    -usb \
+    -device usb-ehci,id=ehci \
+    -device usb-host,vendorid=0x04b4,productid=0x8614
+

@@ -1,10 +1,11 @@
 #!/bin/sh
 qemu-system-x86_64 \
-    -realtime \
+    -realtime mlock=on \
     -enable-kvm \
     -m 8192 \
     -cpu host,kvm=off \
     -smp 3,sockets=1,cores=3,threads=1 \
+    -rtc localtime \
     -drive if=pflash,format=raw,readonly,file=OVMF.fd \
     -device vfio-pci,host=01:00.0 \
     -device vfio-pci,host=01:00.1 \
@@ -13,12 +14,15 @@ qemu-system-x86_64 \
     -netdev tap,id=net0,script=./qemu-ifup,downscript=./qemu-ifdown \
     -device virtio-net-pci,netdev=net0 \
     -vga none \
-    -drive file=win10.raw,format=raw,cache=none,if=ide,index=0 \
+    -drive file=win10.raw,format=raw,cache=none,id=boot,if=none \
+    -device virtio-blk-pci,drive=boot,bootindex=0,scsi=on \
+    -drive file=win10-data1.raw,format=raw,cache=none,if=virtio,index=1 \
     -nographic \
     -usb \
     -device usb-host,vendorid=0x046d,productid=0xc05a \
     -device usb-host,vendorid=0x1b1c,productid=0x1b11 \
     -device usb-host,vendorid=0x1397,productid=0x00bc \
     -device nec-usb-xhci,id=xhci \
-    -device usb-host,vendorid=0x0781,productid=0x5580,bus=xhci.0
+    -device usb-host,vendorid=0x0781,productid=0x5580,bus=xhci.0 \
+    -boot menu=on
 
