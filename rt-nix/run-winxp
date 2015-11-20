@@ -3,7 +3,7 @@
 nice qemu-system-x86_64 \
     -enable-kvm -cpu host,kvm=off \
     -m 2048 \
-    -rtc localtime \
+    -rtc base=localtime \
     -hda winxp.qcow2 \
     -spice port=5900,password=streampc \
     -netdev user,id=net \

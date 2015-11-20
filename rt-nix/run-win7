@@ -14,9 +14,9 @@ qemu-system-x86_64 \
     -netdev tap,id=net0,script=./qemu-ifup,downscript=./qemu-ifdown \
     -device virtio-net-pci,netdev=net0 \
     -vga none \
-    -drive file=win10.raw,format=raw,cache=none,id=boot,if=none \
+    -drive file=win7.raw,format=raw,cache=none,id=boot,if=none \
     -device virtio-blk-pci,drive=boot,bootindex=0,scsi=on \
-    -drive file=win10-data1.raw,format=raw,cache=none,if=virtio,index=1 \
+    -drive file=win7-data1.raw,format=raw,cache=none,if=virtio,index=1 \
     -nographic \
     -usb \
     -device usb-host,vendorid=0x046d,productid=0xc05a \

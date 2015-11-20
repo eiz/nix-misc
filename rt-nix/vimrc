@@ -1,0 +1,19 @@
+syn on
+hi ColorColumn ctermbg=darkgray guibg=darkgray
+set backspace=indent,eol,start
+set nu et ts=4 sw=4 ls=2 ruler modeline modelines=5 cc=81 is hlsearch
+set timeoutlen=1000 ttimeoutlen=10
+set mouse=nicr
+autocmd FileType make set noet ts=8 sw=8
+autocmd BufNew,BufEnter *.nix set ts=2 sw=2
+highlight TabsSuck ctermbg=cyan guibg=cyan
+highlight ExtraWhitespace ctermbg=red guibg=red
+call matchadd('ExtraWhitespace', '\s\+\%#\@<!$')
+autocmd InsertLeave * redraw!
+map <Space> :NERDTreeToggle<CR>
+nnoremap <CR> :noh<CR><CR>
+augroup BgHighlight
+    autocmd!
+    autocmd WinEnter * set cul
+    autocmd WinLeave * set nocul
+augroup END
