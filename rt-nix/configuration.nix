@@ -38,7 +38,9 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
-    wget vim qemu tmux unzip links2 git usbutils bridge-utils tunctl linuxPackages.perf
+    wget vim qemu tmux unzip links2 git
+    usbutils bridge-utils tunctl linuxPackages.perf dwm dmenu
+    chromium 
   ];
 
   # List services that you want to enable:
@@ -49,6 +51,11 @@
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
+
+  services.xserver = {
+    enable = true;
+    videoDrivers = [ "intel" ];
+  };
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
