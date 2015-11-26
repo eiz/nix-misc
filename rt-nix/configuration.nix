@@ -47,7 +47,7 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  networking.firewall.allowedTCPPorts = [ 22 5900 ];
+  networking.firewall.allowedTCPPorts = [ 22 5900 25565 ];
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -55,21 +55,22 @@
   services.xserver = {
     enable = true;
     videoDrivers = [ "intel" ];
+    desktopManager.xterm.enable = false;
+    desktopManager.default = "none";
   };
-
-  # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  # services.xserver.layout = "us";
-  # services.xserver.xkbOptions = "eurosign:e";
-
-  # Enable the KDE Desktop Environment.
-  # services.xserver.displayManager.kdm.enable = true;
-  # services.xserver.desktopManager.kde4.enable = true;
 
   users.extraUsers.eiz = {
     isNormalUser = true;
     uid = 1000;
     extraGroups = [ "wheel" ];
+  };
+
+  nixpkgs.config = {
+    allowUnfree = true;
+    chromium = {
+      enablePepperFlash = true;
+      enablePepperPDF = true;
+    };
   };
 
   # The NixOS release to be compatible with for stateful data such as databases.
