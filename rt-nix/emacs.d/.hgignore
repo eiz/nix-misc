@@ -1,0 +1,8 @@
+syntax: glob
+
+elpa
+eshell
+auto-save-list
+*~
+#*
+
